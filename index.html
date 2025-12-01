@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | 西尾 健</title>
+    <!-- FontAwesome CDN (アイコン用) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Noto Sans JP) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- リセットCSS & 基本設定 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f4f8fb; /* 非常に薄い青灰色 */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- 共通クラス --- */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #004e92; /* 濃い青 */
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #0072ff; /* 明るい青 */
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            background: linear-gradient(to right, #004e92, #0072ff);
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .site-title i {
+            margin-right: 10px;
+        }
+
+        /* --- ヒーローセクション（自己紹介概要） --- */
+        .hero {
+            background-color: #fff;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .profile-icon-box {
+            width: 120px;
+            height: 120px;
+            background: #e6f2ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.2);
+        }
+
+        .profile-icon-box i {
+            font-size: 3.5rem;
+            color: #0072ff;
+        }
+
+        .profile-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #004e92;
+        }
+
+        .profile-univ {
+            font-size: 1.1rem;
+            color: #666;
+            display: inline-block;
+            background-color: #f0f4f8;
+            padding: 5px 20px;
+            border-radius: 20px;
+        }
+
+        .profile-univ i {
+            margin-right: 8px;
+            color: #0072ff;
+        }
+
+        /* --- 自己紹介詳細セクション --- */
+        .intro-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: #fff;
+            border: 1px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 78, 146, 0.1);
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: #0072ff;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .info-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* --- ガクチカセクション --- */
+        .gakuchika-section {
+            padding: 80px 0;
+            background-color: #f4f8fb;
+        }
+
+        .gakuchika-content {
+            background: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid #0072ff;
+            position: relative;
+        }
+
+        .gakuchika-content::before {
+            content: '\f10d'; /* quote-left icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: #e6f2ff;
+        }
+
+        .gakuchika-text {
+            font-size: 1.05rem;
+            text-align: justify;
+            margin-bottom: 0;
+            white-space: pre-wrap; /* 改行を反映 */
+        }
+
+        /* --- フッター --- */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.8rem;
+        }
+
+        /* --- レスポンシブ対応 --- */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+
+            .profile-name {
+                font-size: 1.8rem;
+            }
+
+            .gakuchika-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="container header-inner">
+            <h1 class="site-title">
+                <i class="fa-solid fa-code"></i>My Portfolio
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <!-- ヒーローエリア（自己紹介：名前・所属） -->
+        <section class="hero">
+            <div class="container">
+                <div class="profile-icon-box">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <h2 class="profile-name">西尾 健</h2>
+                <div class="profile-univ">
+                    <i class="fa-solid fa-graduation-cap"></i>日本大学
+                </div>
+            </div>
+        </section>
+
+        <!-- スキル・特徴（デザイン調整用の簡易エリア） -->
+        <section class="intro-section">
+            <div class="container">
+                <h3 class="section-title">About Me</h3>
+                <div class="intro-grid">
+                    <div class="info-card">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <h3>Information Science</h3>
+                        <p>情報学を専攻し、Web開発やプログラミングの基礎を学んでいます。</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fa-solid fa-people-group"></i>
+                        <h3>Leadership</h3>
+                        <p>部活動のキャプテン経験を通じ、チームビルディングを実践しました。</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <h3>Self-Analysis</h3>
+                        <p>客観的な視点で課題を見つけ、解決に向けて努力を継続します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学生時代に力を入れたこと（ガクチカ） -->
+        <section class="gakuchika-section">
+            <div class="container">
+                <h3 class="section-title">学生時代に力を入れたこと</h3>
+                <div class="gakuchika-content">
+                    <p class="gakuchika-text">高校生活で最も力を入れたのは、部活動です。私は3年間、一度も練習を休むことなく取り組み、最高学年ではキャプテンを務めました。チームを牽引する責任感から、全体練習後も個人で課題を見つけ、自主練習を欠かしませんでした。
+
+目標としていた支部選抜選手には一歩届きませんでしたが、候補に選出された経験は、自分の実力を客観的に把握し、次の努力へ繋げる原動力となりました。この経験を通じ、私は目標達成に向けた自己分析力と、逆境でも努力を継続する「強い継続力」を身につけました。これは、貴社で働く上でも必ず活かせると確信しています。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ken Nishio. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
